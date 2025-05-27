@@ -239,24 +239,20 @@
         .services-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr); 
-            gap: 30px; /* Espacio entre tarjetas */
+            gap: 30px;
             margin-top: 40px;
-            /* Opcional: centrar el grid de servicios si el .container es muy ancho
-            max-width: 730px; /* (270px * 2) + 30px + (padding * 2 si es interno a card) -- ajustar
-            margin-left: auto;
-            margin-right: auto; */
         }
 
         .service-card {
-            background-color: #202030; /* Un poco más claro que el fondo de sección */
-            padding: 25px 20px; /* Ajustar padding interno */
+            background-color: #202030;
+            padding: 25px 20px;
             border-radius: 10px;
             text-align: center;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid rgba(77, 255, 255, 0.1); /* Borde sutil cian */
+            border: 1px solid rgba(77, 255, 255, 0.1);
             display: flex; 
             flex-direction: column; 
-            justify-content: flex-start; /* Alinear contenido arriba */
+            justify-content: flex-start; 
         }
 
         .service-card:hover {
@@ -265,11 +261,11 @@
         }
 
         .service-icon {
-            font-size: 2.8rem; /* Ligeramente más pequeño para el layout 2x2 */
+            font-size: 2.8rem;
             color: #4DFFFF;
-            margin-bottom: 15px; /* Menos espacio si el icono es más pequeño */
+            margin-bottom: 15px;
             line-height: 1;
-            height: 45px; /* Espacio reservado para el icono */
+            height: 45px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -278,21 +274,21 @@
         .service-card h3 {
             font-family: 'Montserrat', sans-serif;
             font-weight: 700;
-            font-size: 1.3rem; /* Ajustar si los títulos son largos */
+            font-size: 1.3rem;
             margin-bottom: 10px;
             color: #fff;
-            min-height: 2.6em; /* aprox 2 líneas */
+            min-height: 2.6em;
             display: flex;
             align-items: center;
             justify-content: center;
-            line-height: 1.3; /* Para títulos de varias líneas */
+            line-height: 1.3;
         }
 
         .service-card p {
-            font-size: 0.88rem; /* Ligeramente más pequeño para que quepa mejor */
+            font-size: 0.88rem;
             color: #B0B0C0;
-            flex-grow: 1; /* Para que el párrafo ocupe espacio */
-            margin-top: 5px; /* Pequeño espacio después del título */
+            flex-grow: 1;
+            margin-top: 5px;
         }
         
         /* ----- Sobre Nosotros ----- */
@@ -603,7 +599,6 @@
             .section-title { font-size: 2rem; }
             .section-subtitle { font-size: 1rem; margin-bottom: 30px;}
 
-            /* Forzar una columna para todas las grids en móvil */
             .services-grid, .projects-grid, .blog-grid, .testimonials-grid {
                 grid-template-columns: 1fr; 
             }
@@ -628,12 +623,9 @@
             }
         }
         
-        /* Para pantallas medianas (tablets en horizontal, por ejemplo) MANTENEMOS 2 COLUMNAS para servicios */
-        /* Si el CSS base para .services-grid ya es repeat(2, 1fr), este media query no es estrictamente
-           necesario a menos que queramos cambiarlo desde un default de más columnas (ej. 3 o 4) a 2. */
         @media(min-width: 769px) { 
             .services-grid {
-                 grid-template-columns: repeat(2, 1fr); /* Asegura 2 columnas en tablets y escritorio */
+                 grid-template-columns: repeat(2, 1fr);
             }
         }
 
@@ -860,9 +852,9 @@
                         <h3>Horario de Atención</h3>
                         <p><i class="far fa-clock"></i> Lunes - Viernes: 9:00 - 18:00</p>
                         <div class="social-links">
-                            <a href="#" aria-label="Facebook" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#" aria-label="Instagram" title="Instagram"><i class="fab fa-instagram"></i></a>
-                            <a href="#" aria-label="LinkedIn" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="https://www.facebook.com/profile.php?id=61576886156284" target="_blank" aria-label="Facebook" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://www.instagram.com/innovasur_ai/" target="_blank" aria-label="Instagram" title="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="https://www.linkedin.com/public-profile/settings?trk=d_flagship3_profile_self_view_public_profile" target="_blank" aria-label="LinkedIn" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                         </div>
                     </div>
                 </div>
