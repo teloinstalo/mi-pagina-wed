@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InnovaSur AI - Inteligencia Conectada, Soluciones que Avanzan</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Reseteo básico y configuración global */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            background-color: #12121F; /* Fondo principal oscuro */
+            color: #EAEAEA; /* Texto principal claro */
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 0 20px;
+            overflow: hidden;
+        }
+
+        /* ----- Navbar ----- */
+        .navbar {
+            background: rgba(18, 18, 31, 0.85);
+            backdrop-filter: blur(10px);
+            color: #fff;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 1.8rem;
+            color: #4DFFFF; /* Cian brillante */
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-item {
+            margin-left: 25px;
+        }
+
+        .nav-link {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: #EAEAEA;
+            text-decoration: none;
+            padding: 5px 10px;
+            transition: color 0.3s ease, transform 0.2s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: #FF5722; /* Naranja neón */
+            transform: translateY(-2px);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 50%;
+            background-color: #FF5722;
+            transition: width 0.3s ease, left 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+            left: 0;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+
+        .bar {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px auto;
+            -webkit-transition: all 0.3s ease-in-out;
+            transition: all 0.3s ease-in-out;
+            background-color: #EAEAEA;
+        }
+
+        /* ----- Hero Section ----- */
+        .hero-section {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            color: #fff;
+            background-color: #0a0a14;
+            overflow: hidden;
+        }
+        .hero-section::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            opacity: 0.05;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%234DFFFF' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .hero-bg-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(18, 18, 31, 0.6), rgba(18, 18, 31, 0.9));
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+        }
+
+        .hero-content h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 4rem;
+            margin-bottom: 0.5rem;
+            color: #4DFFFF;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+        }
+
+        .hero-content h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #FF5722;
+        }
+
+        .hero-content .subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            color: #f0f0f0;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #FF5722, #E64A19);
+            color: #fff;
+            padding: 15px 35px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 87, 34, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(255, 87, 34, 0.6);
+        }
+
+        /* ----- Secciones Generales ----- */
+        .section-padding {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 2.8rem;
+            text-align: center;
+            margin-bottom: 15px;
+            color: #4DFFFF;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        .section-title::after{
+            content: '';
+            position: absolute;
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: #FF5722;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: #B0B0C0;
+            margin-bottom: 50px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .text-center { text-align: center; }
+        .bg-darker { background-color: #1A1A2A; }
+
+        /* ----- Servicios (CON MEJORAS PARA 2X2) ----- */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 30px; /* Espacio entre tarjetas */
+            margin-top: 40px;
+            /* Opcional: centrar el grid de servicios si el .container es muy ancho
+            max-width: 730px; /* (270px * 2) + 30px + (padding * 2 si es interno a card) -- ajustar
+            margin-left: auto;
+            margin-right: auto; */
+        }
+
+        .service-card {
+            background-color: #202030; /* Un poco más claro que el fondo de sección */
+            padding: 25px 20px; /* Ajustar padding interno */
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(77, 255, 255, 0.1); /* Borde sutil cian */
+            display: flex; 
+            flex-direction: column; 
+            justify-content: flex-start; /* Alinear contenido arriba */
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(77, 255, 255, 0.15);
+        }
+
+        .service-icon {
+            font-size: 2.8rem; /* Ligeramente más pequeño para el layout 2x2 */
+            color: #4DFFFF;
+            margin-bottom: 15px; /* Menos espacio si el icono es más pequeño */
+            line-height: 1;
+            height: 45px; /* Espacio reservado para el icono */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .service-card h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.3rem; /* Ajustar si los títulos son largos */
+            margin-bottom: 10px;
+            color: #fff;
+            min-height: 2.6em; /* aprox 2 líneas */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1.3; /* Para títulos de varias líneas */
+        }
+
+        .service-card p {
+            font-size: 0.88rem; /* Ligeramente más pequeño para que quepa mejor */
+            color: #B0B0C0;
+            flex-grow: 1; /* Para que el párrafo ocupe espacio */
+            margin-top: 5px; /* Pequeño espacio después del título */
+        }
+        
+        /* ----- Sobre Nosotros ----- */
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            align-items: center;
+        }
+        .about-text {
+            flex: 2;
+        }
+        .about-text p {
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+        }
+        .about-text strong {
+            color: #4DFFFF;
+        }
+         .about-text ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .about-text ul li {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+        .about-text ul li i {
+            margin-right: 10px;
+            width: 20px; 
+            text-align: center;
+        }
+
+        /* ----- Placeholder CSS para Imágenes ----- */
+        .css-placeholder-image {
+            width: 100%;
+            height: 200px;
+            background-color: #2C2F33;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #4DFFFF;
+            font-size: 2.5rem;
+            border-bottom: 3px solid #FF5722;
+            position: relative;
+            overflow: hidden;
+        }
+        .css-placeholder-image::before {
+            content: "";
+            position: absolute;
+            top:0; left:0; right:0; bottom:0;
+            background-image: 
+                linear-gradient(45deg, rgba(77, 255, 255, 0.05) 25%, transparent 25%, transparent 75%, rgba(77, 255, 255, 0.05) 75%, rgba(77, 255, 255, 0.05)),
+                linear-gradient(-45deg, rgba(77, 255, 255, 0.05) 25%, transparent 25%, transparent 75%, rgba(77, 255, 255, 0.05) 75%, rgba(77, 255, 255, 0.05));
+            background-size: 20px 20px;
+            opacity: 0.5;
+        }
+        .css-placeholder-image i {
+            z-index: 1;
+        }
+
+        /* ----- Proyectos y Blog (Cards similares) ----- */
+        .projects-grid, .blog-grid, .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card, .blog-post-card {
+            background: #202030;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(77, 255, 255, 0.1);
+            display: flex;
+            flex-direction: column;
+        }
+        .project-card:hover, .blog-post-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+        }
+
+        .project-info, .blog-post-content {
+            padding: 20px;
+            flex-grow: 1;
+        }
+
+        .project-info h3, .blog-post-content h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.4rem;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .post-meta {
+            font-size: 0.85rem;
+            color: #8A2BE2;
+            margin-bottom: 10px;
+        }
+        .project-category, .blog-category {
+            font-size: 0.8rem;
+            color: #FF5722;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .btn-secondary {
+            display: inline-block;
+            background-color: transparent;
+            color: #FF5722;
+            padding: 8px 18px;
+            text-decoration: none;
+            border-radius: 20px;
+            border: 2px solid #FF5722;
+            font-weight: 700;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            margin-top: 15px;
+        }
+
+        .btn-secondary:hover {
+            background-color: #FF5722;
+            color: #fff;
+        }
+        
+        /* ----- Testimonios / Reseñas ----- */
+        .testimonials-section {
+            /* Ya usa .bg-darker */
+        }
+        .testimonial-card {
+            background-color: #252535;
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 5px solid #8A2BE2;
+            margin-bottom: 20px;
+        }
+        .testimonial-text {
+            font-style: italic;
+            color: #D0D0E0;
+            margin-bottom: 15px;
+            quotes: "“" "”" "‘" "’";
+        }
+        .testimonial-text::before {
+            content: open-quote;
+            font-size: 2em;
+            line-height: 0.1em;
+            margin-right: 0.1em;
+            vertical-align: -0.4em;
+            color: #8A2BE2;
+        }
+        .testimonial-text::after {
+            content: close-quote;
+            font-size: 2em;
+            line-height: 0.1em;
+            margin-left: 0.1em;
+            vertical-align: -0.4em;
+            color: #8A2BE2;
+        }
+        .testimonial-author {
+            font-weight: bold;
+            color: #4DFFFF;
+            text-align: right;
+        }
+        .testimonial-author span {
+            font-weight: normal;
+            font-size: 0.9em;
+            color: #B0B0C0;
+        }
+
+        /* ----- Contacto ----- */
+        .contact-wrapper {
+            display: flex;
+            gap: 40px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        .contact-form-container {
+            flex: 2;
+            background: #202030;
+            padding: 30px;
+            border-radius: 8px;
+        }
+        .contact-info-container {
+            flex: 1;
+        }
+        .contact-info-container h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: #4DFFFF;
+            margin-bottom: 20px;
+        }
+        .contact-info-container p {
+            margin-bottom: 15px;
+            font-size: 1rem;
+            display: flex; 
+            align-items: flex-start;
+        }
+        .contact-info-container p i {
+            color: #FF5722;
+            margin-right: 12px; 
+            width: 20px;
+            flex-shrink: 0; 
+            padding-top: 3px; 
+        }
+        .contact-info-container a {
+            color: #EAEAEA;
+            text-decoration: none;
+        }
+        .contact-info-container a:hover {
+            color: #4DFFFF;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #333343;
+            background-color: #1A1A2A;
+            color: #EAEAEA;
+            border-radius: 5px;
+            font-family: 'Roboto', sans-serif;
+            font-size: 1rem;
+        }
+        .form-group input::placeholder, .form-group textarea::placeholder {
+            color: #777;
+        }
+        .form-group textarea {
+            resize: vertical;
+        }
+
+        .social-links {
+            margin-top: 20px;
+        }
+        .social-links a {
+            color: #B0B0C0;
+            font-size: 1.5rem;
+            margin-right: 15px;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        .social-links a:hover {
+            color: #4DFFFF;
+            transform: scale(1.1);
+        }
+
+        /* ----- Footer ----- */
+        footer {
+            background-color: #0F0F1A;
+            color: #A0A0B0;
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 50px;
+        }
+        .footer-content{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .footer-left p, .footer-right a{
+            font-size: 0.9rem;
+        }
+        .footer-right a {
+            color: #A0A0B0;
+            text-decoration: none;
+            margin-left: 10px;
+        }
+        .footer-right a:hover {
+            color: #4DFFFF;
+        }
+
+        /* ----- Responsive ----- */
+        @media(max-width: 768px) { /* Móviles y tablets pequeñas */
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 70px; 
+                flex-direction: column;
+                background-color: rgba(18, 18, 31, 0.98);
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .nav-item {
+                margin: 20px 0;
+            }
+
+            .hamburger {
+                display: block;
+            }
+            .hamburger.active .bar:nth-child(2) { opacity: 0; }
+            .hamburger.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+            .hamburger.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+            
+            .hero-content h1 { font-size: 2.5rem; }
+            .hero-content h2 { font-size: 1.3rem; }
+            .hero-content .subtitle { font-size: 0.95rem; }
+
+            .section-title { font-size: 2rem; }
+            .section-subtitle { font-size: 1rem; margin-bottom: 30px;}
+
+            /* Forzar una columna para todas las grids en móvil */
+            .services-grid, .projects-grid, .blog-grid, .testimonials-grid {
+                grid-template-columns: 1fr; 
+            }
+            .contact-wrapper {
+                flex-direction: column;
+            }
+             .contact-info-container {
+                text-align: center; 
+            }
+            .contact-info-container p {
+                justify-content: center; 
+            }
+             .social-links {
+                text-align: center;
+            }
+            .footer-content{
+                flex-direction: column;
+                gap: 15px; 
+            }
+             .footer-left, .footer-right {
+                text-align: center;
+            }
+        }
+        
+        /* Para pantallas medianas (tablets en horizontal, por ejemplo) MANTENEMOS 2 COLUMNAS para servicios */
+        /* Si el CSS base para .services-grid ya es repeat(2, 1fr), este media query no es estrictamente
+           necesario a menos que queramos cambiarlo desde un default de más columnas (ej. 3 o 4) a 2. */
+        @media(min-width: 769px) { 
+            .services-grid {
+                 grid-template-columns: repeat(2, 1fr); /* Asegura 2 columnas en tablets y escritorio */
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <a href="#inicio" class="nav-logo">InnovaSur AI</a>
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="#inicio" class="nav-link">Inicio</a></li>
+                    <li class="nav-item"><a href="#servicios" class="nav-link">Servicios</a></li>
+                    <li class="nav-item"><a href="#nosotros" class="nav-link">Nosotros</a></li>
+                    <li class="nav-item"><a href="#proyectos" class="nav-link">Proyectos</a></li>
+                     <li class="nav-item"><a href="#testimonios" class="nav-link">Testimonios</a></li>
+                    <li class="nav-item"><a href="#blog" class="nav-link">Blog</a></li>
+                    <li class="nav-item"><a href="#contacto" class="nav-link">Contacto</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- SECCIÓN INICIO (HOMEPAGE) -->
+        <section id="inicio" class="hero-section">
+            <div class="container hero-content">
+                <h1>InnovaSur AI</h1>
+                <h2>Inteligencia Conectada, Soluciones que Avanzan.</h2>
+                <p class="subtitle">Transformamos tu negocio con la potencia de la Inteligencia Artificial y servicios informáticos de vanguardia desde Córdoba.</p>
+                <a href="#contacto" class="cta-button">Impulsa Tu Futuro Digital</a>
+            </div>
+            <div class="hero-bg-overlay"></div>
+        </section>
+
+        <!-- SECCIÓN SERVICIOS -->
+        <section id="servicios" class="section-padding">
+            <div class="container">
+                <h2 class="section-title">Nuestros Servicios Estratégicos</h2>
+                 <p class="section-subtitle">Ofrecemos un abanico de soluciones tecnológicas diseñadas para llevar tu empresa al siguiente nivel de eficiencia e innovación.</p>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <i class="fas fa-cogs service-icon"></i>
+                        <h3>Hardware y Consultoría TI</h3>
+                        <p>Desde el asesoramiento experto hasta el suministro e instalación de tu infraestructura tecnológica. Garantizamos el rendimiento óptimo con mantenimiento preventivo y soporte especializado.</p>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-brain service-icon"></i>
+                        <h3>Soluciones de IA Personalizadas</h3>
+                        <p>Desarrollamos e implementamos IA a tu medida: chatbots inteligentes que mejoran la atención, análisis predictivos para la toma de decisiones, automatización de procesos con RPA y IA, y mucho más.</p>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-code service-icon"></i>
+                        <h3>Desarrollo de Software Avanzado</h3>
+                        <p>Creamos aplicaciones web y móviles robustas y escalables. Realizamos integración de sistemas complejos y APIs para una operatividad digital fluida y eficiente en tu organización.</p>
+                    </div>
+                     <div class="service-card">
+                        <i class="fas fa-shield-alt service-icon"></i>
+                        <h3>Consultoría Tecnológica Integral</h3>
+                        <p>Te guiamos en tu transformación digital con estrategias personalizadas, planes de ciberseguridad robustos y la optimización de tus procesos de negocio mediante la tecnología más disruptiva del mercado.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN NOSOTROS -->
+        <section id="nosotros" class="section-padding bg-darker">
+            <div class="container">
+                <h2 class="section-title">Conoce a InnovaSur AI</h2>
+                 <p class="section-subtitle">Somos más que una empresa de tecnología; somos tu aliado estratégico en la era digital.</p>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>En <strong>InnovaSur AI</strong>, nacimos con la misión de democratizar el acceso a la Inteligencia Artificial de vanguardia y a soluciones informáticas integrales para el tejido empresarial de Córdoba y Andalucía. Creemos firmemente en el poder catalizador de la tecnología para transformar negocios, optimizar procesos hasta niveles insospechados e impulsar un crecimiento sostenible y competitivo.</p>
+                        <p><strong>Visión:</strong> Consolidarnos como el socio tecnológico referente en el sur de España, siendo reconocidos por nuestra capacidad de innovación constante, la excelencia y fiabilidad de nuestros servicios, y el impacto tangible y positivo que generamos en la operativa y resultados de nuestros clientes.</p>
+                        <p><strong>Nuestros Pilares (Valores):</strong></p>
+                        <ul>
+                            <li><i class="fas fa-lightbulb" style="color:#FF5722;"></i> <strong>Innovación Constante:</strong> Buscamos y aplicamos las últimas tendencias.</li>
+                            <li><i class="fas fa-handshake" style="color:#4DFFFF;"></i> <strong>Compromiso con el Cliente:</strong> Tu éxito es nuestro éxito.</li>
+                            <li><i class="fas fa-medal" style="color:#FF5722;"></i> <strong>Excelencia Técnica:</strong> Soluciones robustas y de calidad superior.</li>
+                            <li><i class="fas fa-user-shield" style="color:#4DFFFF;"></i> <strong>Integridad y Transparencia:</strong> Relaciones basadas en la confianza.</li>
+                            <li><i class="fas fa-map-signs" style="color:#FF5722;"></i> <strong>Proximidad y Conocimiento Local:</strong> Entendemos tus necesidades.</li>
+                        </ul>
+                        <br>
+                        <p>Nuestro equipo, actualmente en expansión, está formado por profesionales apasionados por la tecnología, la resolución de problemas complejos y con un profundo conocimiento del entorno empresarial local. Esta combinación nos permite ofrecer soluciones que no solo son avanzadas, sino que realmente marcan la diferencia y se adaptan a la realidad de tu empresa.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN PROYECTOS -->
+        <section id="proyectos" class="section-padding">
+            <div class="container">
+                <h2 class="section-title">Proyectos Destacados</h2>
+                <p class="section-subtitle">Descubre cómo hemos ayudado a empresas como la tuya a innovar y crecer a través de soluciones tecnológicas a medida.</p>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="css-placeholder-image"><i class="fas fa-truck-loading"></i></div>
+                        <div class="project-info">
+                            <p class="project-category">Inteligencia Artificial</p>
+                            <h3>Optimización de Rutas Logísticas con IA</h3>
+                            <p>Desarrollamos un sistema de IA para "Transportes del Sur" que analizó datos históricos y en tiempo real para optimizar las rutas de su flota, logrando una reducción del 15% en costes de combustible y un aumento del 10% en la eficiencia de entregas.</p>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="css-placeholder-image"><i class="fas fa-store-alt"></i></div>
+                         <div class="project-info">
+                            <p class="project-category">Desarrollo de Software</p>
+                            <h3>Plataforma E-commerce con Chatbot IA</h3>
+                            <p>Para "Moda Andaluza Online", creamos una tienda virtual moderna integrada con un chatbot IA capaz de gestionar el 70% de las consultas de clientes, mejorando la experiencia de usuario y liberando tiempo del personal de soporte.</p>
+                        </div>
+                    </div>
+                     <div class="project-card">
+                        <div class="css-placeholder-image"><i class="fas fa-industry"></i></div>
+                         <div class="project-info">
+                            <p class="project-category">Consultoría y Hardware</p>
+                            <h3>Modernización de Infraestructura TI</h3>
+                            <p>"Manufacturas Cordobesas S.L." confió en nosotros para renovar toda su infraestructura de TI, implementando servidores más eficientes y sistemas de backup robustos, asegurando la continuidad de su negocio y mejorando la productividad general.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- SECCIÓN TESTIMONIOS -->
+        <section id="testimonios" class="section-padding bg-darker testimonials-section">
+            <div class="container">
+                <h2 class="section-title">Lo que Dicen Nuestros Clientes</h2>
+                <p class="section-subtitle">La confianza y satisfacción de nuestros clientes son nuestro mayor aval.</p>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">InnovaSur AI transformó nuestra forma de gestionar los pedidos. Su solución de IA no solo optimizó nuestras rutas, sino que nos dio una visibilidad que antes no teníamos. ¡Altamente recomendados!</p>
+                        <p class="testimonial-author">Ana López, <span>CEO de Transportes del Sur</span></p>
+                    </div>
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">El chatbot que desarrollaron para nuestra tienda online ha sido un cambio de juego. Las ventas han aumentado y nuestros clientes están más contentos con la atención inmediata. Un equipo profesional y muy capaz.</p>
+                        <p class="testimonial-author">Carlos Herrera, <span>Director de Moda Andaluza Online</span></p>
+                    </div>
+                     <div class="testimonial-card">
+                        <p class="testimonial-text">Desde la consultoría inicial hasta la implementación final de nuestra nueva infraestructura, el equipo de InnovaSur AI demostró un gran conocimiento y un compromiso total. Ahora operamos con mucha más seguridad y eficiencia.</p>
+                        <p class="testimonial-author">María Jiménez, <span>Gerente de Manufacturas Cordobesas S.L.</span></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN BLOG -->
+        <section id="blog" class="section-padding">
+            <div class="container">
+                <h2 class="section-title">Desde Nuestro Blog</h2>
+                <p class="section-subtitle">Compartimos conocimiento y perspectivas sobre el apasionante mundo de la IA y la transformación digital.</p>
+                <div class="blog-grid">
+                    <article class="blog-post-card">
+                        <div class="css-placeholder-image"><i class="fas fa-robot"></i></div>
+                        <div class="blog-post-content">
+                            <p class="blog-category">Inteligencia Artificial</p>
+                            <h3>IA Generativa: ¿El Próximo Salto para tu PYME?</h3>
+                            <p class="post-meta">Publicado el <time datetime="2025-07-10">10 Julio, 2025</time> por InnovaSur AI</p>
+                            <p>Exploramos el potencial de la IA generativa más allá de la creación de imágenes. Descubre cómo puede optimizar la redacción de informes, la personalización de marketing y la innovación de productos en pequeñas y medianas empresas...</p>
+                            <a href="#" class="btn-secondary">Leer Artículo Completo</a>
+                        </div>
+                    </article>
+                    <article class="blog-post-card">
+                        <div class="css-placeholder-image"><i class="fas fa-lock"></i></div>
+                        <div class="blog-post-content">
+                            <p class="blog-category">Ciberseguridad</p>
+                            <h3>5 Medidas Esenciales de Ciberseguridad para Empresas en 2025</h3>
+                            <p class="post-meta">Publicado el <time datetime="2025-06-20">20 Junio, 2025</time> por InnovaSur AI</p>
+                            <p>En un entorno digital cada vez más complejo, proteger los activos de tu empresa es crucial. Repasamos las medidas de seguridad fundamentales que toda organización debería implementar este año para mitigar riesgos...</p>
+                            <a href="#" class="btn-secondary">Leer Artículo Completo</a>
+                        </div>
+                    </article>
+                     <article class="blog-post-card">
+                        <div class="css-placeholder-image"><i class="fas fa-cloud-upload-alt"></i></div>
+                        <div class="blog-post-content">
+                            <p class="blog-category">Cloud Computing</p>
+                            <h3>Cloud Híbrido: ¿La Estrategia Óptima para tu Negocio?</h3>
+                            <p class="post-meta">Publicado el <time datetime="2025-05-15">15 Mayo, 2025</time> por InnovaSur AI</p>
+                            <p>Analizamos las ventajas y desafíos de adoptar un modelo de nube híbrida, combinando la flexibilidad de la nube pública con la seguridad y control de la infraestructura privada. ¿Es la solución ideal para ti? ...</p>
+                            <a href="#" class="btn-secondary">Leer Artículo Completo</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN CONTACTO -->
+        <section id="contacto" class="section-padding bg-darker">
+            <div class="container">
+                <h2 class="section-title">Hablemos de tu Proyecto</h2>
+                <p class="section-subtitle">Estamos listos para escuchar tus ideas y ayudarte a encontrar la mejor solución tecnológica.</p>
+                <div class="contact-wrapper">
+                    <div class="contact-form-container">
+                        <form id="contact-form">
+                            <div class="form-group">
+                                <input type="text" id="nombre" name="nombre" placeholder="Tu Nombre Completo" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" id="email" name="email" placeholder="Tu Correo Electrónico" required>
+                            </div>
+                             <div class="form-group">
+                                <input type="text" id="empresa" name="empresa" placeholder="Nombre de tu Empresa (Opcional)">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id="asunto" name="asunto" placeholder="Asunto de tu Consulta" required>
+                            </div>
+                            <div class="form-group">
+                                <textarea id="mensaje" name="mensaje" rows="6" placeholder="Describe tu proyecto o consulta aquí..." required></textarea>
+                            </div>
+                            <button type="submit" class="cta-button">Enviar Ahora</button>
+                        </form>
+                    </div>
+                    <div class="contact-info-container">
+                        <h3>Nuestra Oficina</h3>
+                        <p><i class="fas fa-map-marker-alt"></i> Av. de la Innovación, 123<br>Parque Tecnológico Rabanales 21<br>14071 Córdoba, España</p>
+                        <h3>Contacto Directo</h3>
+                        <p><i class="fas fa-phone"></i> <a href="tel:+34957000000">+34 957 000 000</a></p>
+                        <p><i class="fas fa-envelope"></i> <a href="mailto:contacto@innovasurai.com">contacto@innovasurai.com</a></p>
+                        <h3>Horario de Atención</h3>
+                        <p><i class="far fa-clock"></i> Lunes - Viernes: 9:00 - 18:00</p>
+                        <div class="social-links">
+                            <a href="#" aria-label="Facebook" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" aria-label="Instagram" title="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="#" aria-label="LinkedIn" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-left">
+                <p>&copy; <span id="currentYear"></span> InnovaSur AI. Todos los derechos reservados.</p>
+                <p style="font-size: 0.8em; margin-top: 5px;">Diseño Web Inspirado y Desarrollado con Pasión en Córdoba.</p>
+            </div>
+            <div class="footer-right">
+                <a href="#privacidad">Política de Privacidad</a> | 
+                <a href="#cookies">Política de Cookies</a> | 
+                <a href="#terminos">Términos y Condiciones</a>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Menú Hamburguesa para móvil
+        const hamburger = document.querySelector(".hamburger");
+        const navMenu = document.querySelector(".nav-menu");
+
+        hamburger.addEventListener("click", () => {
+            hamburger.classList.toggle("active");
+            navMenu.classList.toggle("active");
+        });
+
+        document.querySelectorAll(".nav-link").forEach(n => n.addEventListener("click", () => {
+            hamburger.classList.remove("active");
+            navMenu.classList.remove("active");
+        }));
+
+        // Año actual en el footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Cambiar fondo del navbar al hacer scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.backgroundColor = 'rgba(10, 10, 20, 0.95)';
+            } else {
+                navbar.style.backgroundColor = 'rgba(18, 18, 31, 0.85)';
+            }
+        });
+
+        // Simulación de envío de formulario de contacto
+        const contactForm = document.getElementById('contact-form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('¡Gracias por tu mensaje! Hemos recibido tu consulta y nos pondremos en contacto contigo a la brevedad. (Esto es una simulación de envío)');
+                this.reset();
+            });
+        }
+    </script>
+</body>
+</html>
